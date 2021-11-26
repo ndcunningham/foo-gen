@@ -1,0 +1,11 @@
+{
+  "name": "foo",
+  "version": "0.0.1",
+  "schematics": {
+    "new": {
+      "factory": "./index#newGenerator",
+      "schema": "./schema.json",
+      "description": "Create an empty workspace for Foo"
+    }
+  }
+}

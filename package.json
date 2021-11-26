@@ -1,0 +1,19 @@
+{
+  "name": "nx-template-foo",
+  "version": "1.0.21",
+  "description": "sample template preset for nx",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "prebuild":"rm -rf dist",
+    "build": "tsc && cp -R ./stuff ./schema.json ./package.json ./generators.json ./dist",
+    "my-publish": "yarn build && cd dist && npm publish"
+  },
+  "dependencies": {
+    "@nrwl/devkit": "^13.2.2",
+    "@nrwl/workspace": "^13.2.2"
+  },
+  "devDependencies": {
+    "typescript": "^4.5.2"
+  }
+}
