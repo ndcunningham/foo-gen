@@ -1,23 +1,21 @@
-import { Tree, addDependenciesToPackageJson, ProjectConfiguration, addProjectConfiguration, formatFiles } from "@nrwl/devkit";
-import { createApplicationFiles } from "./create-application-files";
-import { normalizeOptions } from "./normalize-options";
-import { NormalizedSchema, Schema } from "./schema";
+import { Tree, addDependenciesToPackageJson, ProjectConfiguration, addProjectConfiguration, formatFiles, updateJson, joinPathFragments, getWorkspaceLayout, generateFiles, normalizePath, names } from "@nrwl/devkit";
+import { Schema } from "./schema";
 
 export async function newGenerator(tree: Tree, schema: Schema) {
 
-  // const options = normalizeOptions(tree, schema);
-  // createApplicationFiles(tree, options);
-  // addProject(tree, options);
+  const { appsDir } = getWorkspaceLayout(tree);
+  const appProjectRoot = normalizePath(`${appsDir}/${names(schema.name).fileName}`);
+
   const install = updateDependencies(tree);
   await install();
 
-  // generateFiles(tree, joinPathFragments(__dirname, './stuff'), appProjectRoot, {});
+  generateFiles(tree, joinPathFragments(__dirname, './stuff'), appProjectRoot, {});
 
-  // await formatFiles(tree);
+  await formatFiles(tree);
 
-  // return async () => {
-  //   await install();
-  // }
+  return async () => {
+    await install();
+  }
 }
 
 function updateDependencies(tree: Tree) {
@@ -30,22 +28,3 @@ function updateDependencies(tree: Tree) {
     {}
   );
 }
-
-
-export function addProject(host: Tree, options: NormalizedSchema) {
-  const project: ProjectConfiguration = {
-    root: options.appProjectRoot,
-    sourceRoot: `${options.appProjectRoot}/src`,
-    projectType: 'application',
-  };
-
-  addProjectConfiguration(
-    host,
-    options.projectName,
-    {
-      ...project,
-    },
-    options.standaloneConfig
-  );
-}
-

@@ -1,6 +1,6 @@
 {
   "name": "nx-template-foo",
-  "version": "1.0.21",
+  "version": "1.0.23",
   "description": "sample template preset for nx",
   "main": "index.js",
   "license": "MIT",
