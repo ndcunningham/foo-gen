@@ -1,4 +1,4 @@
-import { Tree, addDependenciesToPackageJson, ProjectConfiguration, addProjectConfiguration, formatFiles, updateJson, joinPathFragments, getWorkspaceLayout, generateFiles, normalizePath, names } from "@nrwl/devkit";
+import { Tree, addDependenciesToPackageJson, formatFiles, joinPathFragments, getWorkspaceLayout, generateFiles, normalizePath, names } from "@nrwl/devkit";
 import { Schema } from "./schema";
 
 export async function newGenerator(tree: Tree, schema: Schema) {
